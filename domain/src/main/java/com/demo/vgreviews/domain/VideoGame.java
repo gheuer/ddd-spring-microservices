@@ -15,7 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import java.util.*;
+package com.demo.vgreviews.domain;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.OptionalDouble;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -66,7 +71,7 @@ public class VideoGame {
     /**
      * List of currently loaded video game reviews
      */
-    private final List<VideoGameReview> reviews;
+    private List<VideoGameReview> reviews;
 
     /**
      * Class constructor to initialize non mutable fields

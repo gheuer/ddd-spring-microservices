@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>vg-reviews</artifactId>
+        <groupId>com.demo</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>vg-reviews-spring</artifactId>
+
+    <properties>
+        <docker.tag>${project.version}</docker.tag>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>vg-reviews-inbound</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>vg-reviews-commons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>vg-reviews-domain</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>vg-reviews-outbound</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.demo</groupId>
+            <artifactId>vg-reviews-services</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <configuration>
+                    <skip>false</skip>
+                    <tag>${docker.tag}</tag>
+                    <repository>docker.demo.com</repository>
+                    <dockerfile>../docker/Dockerfile</dockerfile>
+                    <contextDirectory>../</contextDirectory>
+                    <buildArgs>
+                        <JAR_FILEPATH>spring/target</JAR_FILEPATH>
+                        <JAR_FILENAME>${project.build.finalName}.jar</JAR_FILENAME>
+                    </buildArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <finalName>vg-reviews</finalName>
+    </build>
+
+</project>

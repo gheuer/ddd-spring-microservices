@@ -15,6 +15,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package com.demo.vgreviews.domain;
+
 import java.util.Date;
 
 /**
@@ -27,17 +29,17 @@ public class VideoGameReview {
     /**
      * Amount of points given to the game
      */
-    private int points;
+    private final int points;
 
     /**
      * Written text review given to the game
      */
-    private String review;
+    private final String review;
 
     /**
      * When the review was performed
      */
-    private Date date;
+    private final Date date;
 
     /**
      * Full class constructor
